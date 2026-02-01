@@ -1,6 +1,6 @@
-<center>
+<p align="center">
 <img src="docs/logo.png" alt="logo">
-</center>
+</p>
 
 ## Brief fonctionnel
 
