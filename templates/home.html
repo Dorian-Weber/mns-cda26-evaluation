@@ -9,11 +9,20 @@
         </div>
         <h2 class="text-xl font-bold mt-6">Évènements à venir</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h3 class="text-lg font-bold">Évènement 1</h3>
-                <p class="text-gray-700">Description de l'évènement 1.</p>
-                <p class="text-gray-500 text-sm">Date : 2024-07-01</p>
-            </div>
+            {% if not events %}
+                <p class="text-gray-500">Aucun évènement à venir pour le moment.</p>
+            {% endif %}
+            {% for event in events %}
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h3 class="text-lg font-bold">{{ event.title }}</h3>
+                    <p class="text-sm text-gray-500">{{ event.type |capitalize() }}</p>
+                    <p class="text-gray-500 text-sm">Date : {{ event.date }}</p>
+                    <p class="text-gray-500">{{ event.location }}</p>
+                    <p class="text-gray-700">{{ event.description }}</p>
+                    <p class="text-gray-500 text-sm">Créé le : {{ event.date_created }}</p>
+                    <a href="{{ url_for('delete_event', id=event.id) }}" class="text-red-500 hover:text-red-700">Supprimer</a>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
