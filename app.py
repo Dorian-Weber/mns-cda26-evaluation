@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, jsonify, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -65,6 +65,26 @@ def delete_event(id):
     db.session.commit()
     flash("Entrée d'historique supprimée avec succès", "success")
     return  redirect(url_for("home"))
+
+
+@app.route("/events/upcoming", methods=["GET"])
+def get_upcoming_events():
+    events = (
+        db.session.query(Event)
+        .filter(Event.date >= datetime.today())
+        .order_by(Event.date.asc())
+        .limit(5)
+        .all()
+    )
+    return jsonify([{
+        "id": event.id,
+        "title": event.title,
+        "type": event.type,
+        "date": event.date,
+        "location": event.location,
+        "description": event.description
+    } for event in events])
+
 
 if __name__ == "__main__" :
     app.run(debug=True)
