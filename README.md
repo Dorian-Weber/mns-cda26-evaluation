@@ -1,6 +1,6 @@
 # Evaluation de fin de module
 
-_MNS - CDA 2026 - 02 février 2026_
+_MNS - CDA 2026 - 10 février 2026_
 
 ## Consignes
 
@@ -31,8 +31,8 @@ Cette évaluation **individuelle** vise à vérifier votre capacité à concevoi
 
 ## Rendu
 
-Le rendu du code source est à effectuer via **Github Classroom**.
-Attention à la deadline, fixée au **16 février 2026 à 12h**. Après cette date, les droits d'écriture seront retirés du repository.
+Le rendu du code source est à effectuer via un repository **Github** (public ou privé, dans ce dernier cas, partagé avec moi).
+Attention à la deadline, fixée au **24 février 2026 à 12h**. Après cette date, les droits d'écriture seront retirés du repository.
 
 ## Conseils pour réussir l'évaluation
 
