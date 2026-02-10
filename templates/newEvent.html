@@ -1,3 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
+    <form action="/" method="POST">
+        <label for="event_name">Nom de l'évènement :</label>
+        <input type="text" id="event_name" name="event_name" required>
+
+        <label for="event_date">Date de l'évènement :</label>
+        <input type="date" id="event_date" name="event_date" required>
+
+        <label for="event_description">Description de l'évènement :</label>
+        <textarea id="event_description" name="event_description" required></textarea>
+
+        <label for="event_location">Lieu de l'évènement :</label>
+        <input type="text" id="event_location" name="event_location" required>
+
+        <label for="event_type">Type de l'évènement :</label>
+        <select name="type" id="event_type">
+            <option value="conference">Conférence</option>
+            <option value="team_building">Team Building</option>
+            <option value="sortie">Sortie</option>
+            <option value="dinner">Repas d'équipe</option>
+        </select>
+        <button type="submit">Ajouter l'évènement</button>
+    </form>
 {% endblock %}

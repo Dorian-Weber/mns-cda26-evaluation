@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -28,6 +28,24 @@ with app.app_context():
 def home():
     return render_template("home.html")
 
+@app.route("/events", methods=["GET"])
+def events():
+    all_events = Event.query.all()
+    return render_template("events.html", events=all_events)
+
+@app.route("/events", methods=["POST"])
+def add_event():
+    title = request.form['event_name']
+    type = request.form['type']
+    date = request.form['event_date']
+    lieu = request.form['event_location']
+    description = request.form['event_description']
+
+    new_event = Event(title=title, type=type, date=date, lieu=lieu, description=description)
+    db.session.add(new_event)
+    db.session.commit()
+
+    return redirect(url_for('events'))
 
 if __name__ == "__main__" :
     app.run(debug=True)
