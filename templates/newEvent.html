@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
+        {% include "flash.html" %}
+    
     <form action="/events" method="POST" class="max-w-xl mx-auto mt-16 p-6 bg-white rounded-lg shadow flex flex-col gap-4">
         <label for="title" class="block text-sm font-medium text-gray-700">Nom de l'évènement :</label>
-        <input type="text" id="title" name="title" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+        <input type="text" id="title" name="title" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
 
         <label for="date" class="block text-sm font-medium text-gray-700">Date de l'évènement :</label>
-        <input type="date" id="date" name="date" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+        <input type="date" id="date" name="date" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
 
         <label for="description" class="block text-sm font-medium text-gray-700">Description de l'évènement :</label>
-        <textarea id="description" name="description" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" rows="4"></textarea>
+        <textarea id="description" name="description" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" rows="4"></textarea>
 
         <label for="location" class="block text-sm font-medium text-gray-700">Lieu de l'évènement :</label>
-        <input type="text" id="location" name="location" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+        <input type="text" id="location" name="location" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
 
         <label for="type" class="block text-sm font-medium text-gray-700">Type de l'évènement :</label>
         <select name="type" id="type" class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">

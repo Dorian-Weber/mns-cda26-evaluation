@@ -1,6 +1,8 @@
 from datetime import datetime
 from flask import Flask, flash, jsonify, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from pydantic import BaseModel, Field, constr
+import datetime as dt
 
 app = Flask(__name__)
 secret_key = "my_secret_key"
@@ -24,7 +26,14 @@ class Event(db.Model):
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.type}', '{self.date}', '{self.location}', '{self.description}','{self.date_created}')"
-    
+
+class CreateEvent(BaseModel):
+    title: constr(strip_whitespace=True, min_length=1, max_length=50) # type: ignore
+    type: constr(strip_whitespace=True, min_length=1, max_length=50) # type: ignore
+    date: dt.date
+    location: constr(strip_whitespace=True, min_length=1, max_length=50) # type: ignore
+    description: constr(strip_whitespace=True, min_length=1, max_length=100) # type: ignore
+
 with app.app_context():
     db.create_all()
 
@@ -40,15 +49,21 @@ def events():
 
 @app.route("/events", methods=["POST"])
 def add_event():
-    title = request.form['title']
-    type = request.form['type']
-    str_date = request.form['date']
-    location = request.form['location']
-    description = request.form['description']
+    data = request.form.to_dict()
 
-    date = datetime.strptime(str_date, '%Y-%m-%d').date()
+    required_fields = ["title", "type", "date", "location", "description"]
 
-    new_event = Event(title=title, type=type, date=date, location=location, description=description)
+    if any(not data.get(field) 
+           for field in required_fields):
+        flash("Tous les champs sont obligatoires !", "error")
+        return redirect(url_for('events'))
+    try:
+        validated: CreateEvent = CreateEvent.model_validate(data)
+    except Exception as e:
+        flash(f"Tous les champs sont obligatoires !", "error")
+        return redirect(url_for('events'))
+
+    new_event = Event(**validated.model_dump())
     db.session.add(new_event)
     db.session.commit()
     

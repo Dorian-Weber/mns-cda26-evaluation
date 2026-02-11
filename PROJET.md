@@ -11,7 +11,7 @@ Une entreprise de taille moyenne souhaite se doter d'un **outil interne** permet
 Aujourd'hui, on peut imaginer que ces informations circulent par e-mail ou via différents outils non centralisés. L'objectif est donc de disposer d'une **application web interne légère**, accessible via un navigateur, permettant de :
 
 - consulter les évènements proposés
-- proposer facilement une idée d'évènement via un formulaire
+- proposer facilement une idée d'évènement via un formulaire"
 - exposer une petite information synthétique au format JSON pour une future intégration (intranet, écran d'accueil, outil RH)
 
 ### 2. Périmètre spécifique à l'évaluation
