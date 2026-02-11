@@ -49,10 +49,11 @@ def events():
 
 @app.route("/events", methods=["POST"])
 def add_event():
+    # crée un dictionnaire des données envoyer par le formulaire
     data = request.form.to_dict()
-
     required_fields = ["title", "type", "date", "location", "description"]
 
+    #vérfie que tout les champs de la liste sont bien dans le dictionnaire 
     if any(not data.get(field) 
            for field in required_fields):
         flash("Tous les champs sont obligatoires !", "error")
@@ -62,7 +63,8 @@ def add_event():
     except Exception as e:
         flash(f"Tous les champs sont obligatoires !", "error")
         return redirect(url_for('events'))
-
+    
+    # renvoie les données en bdd si tout est bon 
     new_event = Event(**validated.model_dump())
     db.session.add(new_event)
     db.session.commit()
